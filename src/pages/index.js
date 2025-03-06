@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function Home() {
+export default function Home({testStr}) {
   return (
     <>
       <Head>
@@ -26,6 +26,7 @@ export default function Home() {
         className={`${styles.page} ${geistSans.variable} ${geistMono.variable}`}
       >
         <main className={styles.main}>
+          <p>{testStr}</p>
           <Image
             className={styles.logo}
             src="/next.svg"
@@ -114,4 +115,14 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+export const getServerSideProps = () => {
+  const testStr = 'test string'
+
+  return {
+    props: {
+      testStr
+    }
+  }
 }
